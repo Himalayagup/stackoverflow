@@ -12,6 +12,7 @@ class Questions(models.Model):
     associated_user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True, blank=True)
     tags = TaggableManager(through=Tagged,blank=True)
     vote = models.SmallIntegerField("Vote", default=0)
+    total_vote_count = models.IntegerField("Total Vote Count", default=0)
 
     class Meta:
         verbose_name = "Question"
@@ -30,8 +31,10 @@ class Answers(models.Model):
     answer = models.TextField("Solution")
     tags = TaggableManager(through=AnswerTagged,blank=True)
     vote = models.SmallIntegerField("Vote", default=0)
+    total_vote_count = models.IntegerField("Total Vote Count", default=0)
     parent_answer = models.ForeignKey("self", on_delete=models.SET_NULL,blank=True,
                                     null=True,related_name="replytosolution")
+    associated_user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = "Answer"

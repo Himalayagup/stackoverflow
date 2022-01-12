@@ -44,12 +44,15 @@ THIRD_PARTY_APPS = [
     "taggit_selectize",
     "ckeditor",
     "import_export",
+    "widget_tweaks",
+    "taggit_serializer",
 ]
 
 LOCAL_APPS = [
     "accounts",
     "tags",
     "questions",
+    "frontend",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
