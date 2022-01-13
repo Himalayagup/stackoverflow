@@ -1,38 +1,96 @@
 {% load static %}
 {% load widget_tweaks %}
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>login</title>
-</head>
-<body>
-   <form action="{% url 'frontend:login' %}" method="POST" novalidate>
-     {% csrf_token %}
-     {% for field in form.visible_fields %}
-     <div class="form-group">
-       {{ field.label_tag }}
-       <br>
-       {% if help_text %}
-       <span style="font-size:12px;">({{ field.help_text}})</span>
-       {% endif %}
-       {% render_field field class="form-control" %}
-       {% if messages%}
-       {% for message in messages %}
-       <span style="color:red">{{ message }}</span>
-       {% endfor %}
-       {% endif %}
-       {% endfor %}
-     </div>
 
-     <!-- <div class="form-group d-flex justify-content-between">
-       <a href="recovery-password.html">Reset password</a>
-     </div> -->
-     <input type="submit" value="Login" class="btn btn-primary btn-block">
-     <hr>
-     <p class="text-muted">Don't have an account?</p>
-     <a href="{% url 'frontend:register' %}" class="btn btn-outline-light btn-sm">Register now!</a>
-   </form>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <title>Stackoverflow Colne - Himalaya Gupta</title>
+
+</head>
+
+<body data-scroll-animation="true">
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+                    <img src="img/spinner_logo.png" alt="">
+                    <h4><span>Overflow Clone</span></h4>
+                </div>
+            </div>
+            <h2 class="head">Did You Know?</h2>
+            <p></p>
+        </div>
+    </div>
+    <div class="body_wrapper">
+        <section class="signup_area">
+            <div class="row ms-0 me-0">
+                <div class="sign_left signin_left">
+                    <h2>We are help to find solutions.</h2>
+                    <img class="position-absolute top" src="{% static 'img/signup/top_ornamate.png' %}" alt="top">
+                    <img class="position-absolute bottom" src="{% static 'img/signup/bottom_ornamate.png' %}" alt="bottom">
+                    <img class="position-absolute middle" src="{% static 'img/signup/door.png' %}" alt="bottom">
+                    <div class="round"></div>
+                </div>
+                <div class="sign_right signup_right">
+                    <div class="sign_inner signup_inner">
+                        <div class="text-center">
+                            <h3>Sign in to Overflow Clone platform</h3>
+                            <p>Don’t have an account yet? <a href="{% url 'frontend:register' %}">Sign up here</a></p>
+                        </div>
+                        <div class="divider">
+                            <span class="or-text">or</span>
+                        </div>
+
+                        <form action="{% url 'frontend:login' %}" class="row login_form" method="POST" novalidate>
+                          {% csrf_token %}
+                          {% for field in form.visible_fields %}
+                          <div class="form-group">
+                            {{ field.label_tag }}
+                            <br>
+                            {% if help_text %}
+                            <span style="font-size:12px;">({{ field.help_text}})</span>
+                            {% endif %}
+                            {% render_field field class="form-control" %}
+                            {% if messages%}
+                            {% for message in messages %}
+                            <span style="color:red">{{ message }}</span>
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+                          </div>
+
+                            <div class="col-lg-12 text-center">
+                                <input type="submit" value="Sign in" class="btn action_btn thm_btn">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/pre-loader.js' %}"> </script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'unpkg.com/ionicons%405.4.0/dist/ionicons.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
 </body>
+
 </html>

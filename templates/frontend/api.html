@@ -1,0 +1,716 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <title>Stackoverflow Colne - Himalaya Gupta</title>
+
+</head>
+
+<body data-scroll-animation="true">
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+                    <img src="{% static 'img/spinner_logo.png' %}" alt="">
+                    <h4><span>Overflow Clone</span></h4>
+                </div>
+            </div>
+            <h2 class="head">Did You Know?</h2>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="body_wrapper">
+        <div class="click_capture"></div>
+        <nav class="navbar navbar-expand-lg menu_one sticky-nav d-lg-block d-none">
+            <div class="container">
+                <a class="navbar-brand header_logo" href="index.html">
+                    <img class="first_logo sticky_logo" src="{% static 'img/logo.png' %}" srcset="{% static 'img/logo-2x.png' %} 2x" alt="logo" />
+                    <img class="white_logo main_logo" src="{% static 'img/logo-w.png' %}" srcset="{% static 'img/logo-w2x.png' %} 2x" alt="logo" />
+                </a>
+                <div class="search-input">
+                    <ion-icon class="search-icon" name="search-outline"></ion-icon>
+                    <input type="text" placeholder="Search..." value="" class="">
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu ms-auto">
+                        <li class="nav-item dropdown submenu active">
+                            <a href="{% url 'frontend:home_page' %}" class="nav-link dropdown-toggle">Home</a>
+
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="{% url 'frontend:all_questions' %}" role="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                All Questions
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="{% url 'frontend:all_apis' %}" role="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                All APIs
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="right-nav">
+                      {% if request.user.is_authenticated %}
+                        <a class="action_btn btn_small_two btn-text-medium round-btn-2" href="{% url 'frontend:logout' %}">Sign Out</a>
+                      {% else %}
+                      <a class="action_btn btn_small_two btn-text-medium round-btn-2" href="{% url 'frontend:login' %}">Sign In</a>
+                      <a class="action_btn btn_small_two btn-text-medium round-btn-2" href="{% url 'frontend:register' %}">Sign Up</a>
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile_main_menu  sticky-nav menu_one">
+            <div class="container">
+                <div class="mobile_menu_left">
+                    <button type="button" class="navbar-toggler mobile_menu_btn">
+                        <span class="menu_toggle ">
+                            <span class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </span>
+                    </button>
+                    <a class="navbar-brand header_logo" href="index.html">
+                        <img class="sticky_logo  " src="img/logo.png" srcset="img/logo-2x.png 2x" alt="logo">
+                        <img class="white_logo main_logo" src="img/logo-w.png" srcset="img/logo-w2x.png 2x" alt="logo">
+                    </a>
+                </div>
+                <div class="mobile_menu_right">
+                    <div class="right-nav">
+                        <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
+                            <label for="something2" class="tab-btn tab-btns">
+                                <ion-icon name="moon"></ion-icon>
+                            </label>
+                            <label for="something2" class="tab-btn">
+                                <ion-icon name="sunny"></ion-icon>
+                            </label>
+                            <label class=" ball" for="something2"></label>
+                            <input type="checkbox" name="something2" id="something2" class="dark_mode_switcher">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="side_menu">
+            <div class="mobile_menu_header">
+                <div class="close_nav">
+                    <i class="icon_close"></i>
+                </div>
+                <div class="mobile_logo">
+                    <a class="navbar-brand header_logo me-0" href="index.html">
+                        <img class="sticky_logo main_logo" src="img/logo.png" srcset="img/logo-2x.png 2x" alt="logo">
+                        <img class="white_logo" src="img/logo-w.png" srcset="img/logo-w2x.png 2x" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="mobile_nav_wrapper">
+                <nav class="mobile_nav_top">
+                    <ul class="navbar-nav menu ms-auto">
+                        <li class="nav-item dropdown submenu ">
+                            <a href="index.html" class="nav-link dropdown-toggle">Home</a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item "><a href="index.html" class="nav-link">Demo 01</a></li>
+                                <li class="nav-item"><a href="index-2.html" class="nav-link">Demo 02</a></li>
+                                <li class="nav-item "><a href="index-3.html" class="nav-link">Demo 03</a></li>
+                                <li class="nav-item "><a href="index-4.html" class="nav-link">Demo 04</a></li>
+                                <li class="nav-item "><a href="index-5.html" class="nav-link">Demo 05</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#">
+                                Pages
+                            </a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="Layout_Header-Search-1.html" class="nav-link">Header
+                                        Layout 01</a></li>
+                                <li class="nav-item"><a href="Layout_Header-Search-2.html" class="nav-link">Header
+                                        Layout 02</a></li>
+                                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                                <li class="nav-item"><a href="typography.html" class="nav-link">Typography</a></li>
+                                <li class="nav-item"><a href="404-error.html" class="nav-link">404 Error</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown submenu active">
+                            <a class="nav-link dropdown-toggle" href="forums.html">
+                                Forum
+                            </a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item active"><a href="forums.html" class="nav-link">Forums Root</a></li>
+                                <li class="nav-item"><a href="forum-topics.html" class="nav-link">Forum Topics</a></li>
+                                <li class="nav-item"><a href="forum-topics-2.html" class="nav-link">Forum Topics Two</a>
+                                </li>
+                                <li class="nav-item"><a href="forum-single.html" class="nav-link">Topic Details</a></li>
+                                <li class="nav-item"><a href="forum-profile.html" class="nav-link">User Profile</a></li>
+                                <li class="nav-item "><a href="add-question.html" class="nav-link">Add Question</a></li>
+                                <li class="nav-item"><a href="user-list.html" class="nav-link">User List</a></li>
+                                <li class="nav-item"><a href="user-details.html" class="nav-link">User Details</a></li>
+                                <li class="nav-item"><a href="badges.html" class="nav-link">User Badges</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#">
+                                Blog
+                            </a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="blog-grid.html" class="nav-link">Blog Grid</a></li>
+                                <li class="nav-item"><a href="blog-grid-two.html" class="nav-link">Blog Grid Two</a>
+                                </li>
+                                <li class="nav-item"><a href="blog-list.html" class="nav-link">Blog List</a></li>
+                                <li class="nav-item"><a href="blog-single.html" class="nav-link">Blog Details</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--================Forum Breadcrumb Area =================-->
+        <section class="banner-area-7 pt-60 pb-80 has_search">
+            <div class="banner-shapes">
+                <div class="shape">
+                    <img data-parallax='{"x": 50, "y": 0, "rotateZ":0}' src="{% static 'img/add-question/banner-shape-1.png' %}"
+                        alt="shape" />
+                </div>
+                <div class="shape">
+                    <img data-parallax='{"x": 50, "y": 0, "rotateZ":0}' src="{% static 'img/add-question/banner-shape-2.png' %}"
+                        alt="shape" />
+                </div>
+                <div class="shape">
+                    <img data-parallax='{"x": 50, "y": 0, "rotateZ":0}' src="{% static 'img/add-question/banner-shape-3.png' %}"
+                        alt="shape" />
+                </div>
+                <div class="shape">
+                    <img data-parallax='{"x": 50, "y": 0, "rotateZ":0}' src="{% static 'img/add-question/banner-shape-4.png' %}"
+                        alt="shape" />
+                </div>
+            </div>
+            <div class="container">
+                <div class="row pt-120 pb-30">
+                    <div class="col-lg-9 doc_banner_content search-banner-light text-center mx-auto ">
+                        <form action="/search" class="header_search_form-5 mx-auto">
+                            <div class="header_search_form_info">
+                                <div class="form-group">
+                                    <div class="input-wrapper d-flex flex-row">
+                                        <input type="search" id="searchbox" autocomplete="off" name="query"
+                                            placeholder="Search questions, solutions, tags..." />
+                                        <button type="submit"><i class="icon_search"></i></button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="doc_blog_grid_area sec_pad forum-page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <!-- /.answer-action -->
+
+                        <div class="post-header forums-header">
+                            <div class="col-md-6 col-sm-6 support-info">
+                                <span> All APIs </span>
+                            </div>
+                            <!-- /.support-info -->
+                            <div class="col-md-6 col-sm-6 support-category-menus">
+
+                            </div>
+                            <!-- /.support-category-menus -->
+                        </div>
+                        <!-- /.post-header -->
+
+                        <div class="community-posts-wrapper bb-radius">
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/search-question/?q= </h3>
+                                        </a>
+                                        <p>Pass Any word, question, tag in q. It will return questions and answer according to the search</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/search-question/?q=" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/all/</h3>
+                                        </a>
+                                        <p>This API returns all the questions</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/all/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/create-question/</h3>
+                                        </a>
+                                        <p>This API Creates a new question</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/create-question/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/top-three/</h3>
+                                        </a>
+                                        <p>This API returns Top Three questions based on total vote count</p>
+                                        <small>Total Vote Count is how many people have voted for it. If one user have voted Up and one voted down so total vote count would be 2, althoug the vote would be 0</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/top-three/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/question_slug/solutions/</h3>
+                                        </a>
+                                        <p>This API returns All answers to the questions and takes slug of the question as parameter</p>
+                                        <small>It also returns the threaded replies in the item</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<slug:slug>/solutions/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/question_id/solution/create/</h3>
+                                        </a>
+                                        <p>To create a new solution/answer to the question</p>
+                                        <small>It takes question id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/question_id/solution/create/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/solution_id/solution/thread/create/</h3>
+                                        </a>
+                                        <p>To answer to an answer (creating thread of response)</p>
+                                        <small>It takes answer/solution id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<int:solution_id>/solution/thread/create/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/question_id/upvote/</h3>
+                                        </a>
+                                        <p>To Upvote a question</p>
+                                        <small>It takes question id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<int:question_id>/upvote/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/question_id/downvote/</h3>
+                                        </a>
+                                        <p>To Downvote a question</p>
+                                        <small>It takes question id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<int:question_id>/downvote/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/solution_id/upvote/</h3>
+                                        </a>
+                                        <p>To Upvote a Solution/Answer</p>
+                                        <small>It takes solution/answer id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<int:solution_id>/upvote/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}questions/solution_id/downvote/</h3>
+                                        </a>
+                                        <p>To Downvote a solution</p>
+                                        <small>It takes solution/answer id as parameter</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}questions/<int:solution_id>/downvote/" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+
+                                    <div class="entry-content">
+                                        <a>
+                                            <h3 class="post-title"> {{BaseURL}}accounts/registration/</h3>
+                                        </a>
+                                        <p>To Create a new account</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+
+                                                <div class="freshness-btm">
+                                                    <div class="freshness-name">
+                                                        <a href="{{BaseURL}}accounts/registration" title="View Eh Jewel's profile"
+                                                            class="bbp-author-link">
+                                                            <span class="bbp-author-name">Visit</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                        <div class="community-post style-two forum-item bug">
+                            <div class="col-md-6 post-content">
+
+                                <div class="entry-content">
+                                    <a>
+                                        <h3 class="post-title"> {{BaseURL}}accounts/login/</h3>
+                                    </a>
+                                    <p>To Login Into Account</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 post-meta-wrapper">
+                                <ul class="forum-titles">
+                                    <li class="forum-freshness">
+                                        <div class="freshness-box">
+
+                                            <div class="freshness-btm">
+                                                <div class="freshness-name">
+                                                    <a href="{{BaseURL}}accounts/login/" title="View Eh Jewel's profile"
+                                                        class="bbp-author-link">
+                                                        <span class="bbp-author-name">Visit</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.forum-item  -->
+                        <div class="community-post style-two forum-item bug">
+                            <div class="col-md-6 post-content">
+
+                                <div class="entry-content">
+                                    <a>
+                                        <h3 class="post-title"> {{BaseURL}}accounts/logout/</h3>
+                                    </a>
+                                    <p>To logout from Account</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 post-meta-wrapper">
+                                <ul class="forum-titles">
+                                    <li class="forum-freshness">
+                                        <div class="freshness-box">
+
+                                            <div class="freshness-btm">
+                                                <div class="freshness-name">
+                                                    <a href="{{BaseURL}}accounts/logout/" title="View Eh Jewel's profile"
+                                                        class="bbp-author-link">
+                                                        <span class="bbp-author-name">Visit</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.forum-item  -->
+                    </div>
+                        <!-- /.community-posts-wrapper -->
+                    </div>
+                    <!-- /.col-lg-9 -->
+
+                    <!-- /.col-lg-3 -->
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!-- Back to top button -->
+    <a id="back-to-top" title="Back to Top"></a>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/pre-loader.js' %}"></script>
+    <script src="{% static 'js/jquery.parallax-scroll.js' %}"></script>
+    <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+    <script src="{% static 'assets/magnify-pop/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'unpkg.com/ionicons%405.4.0/dist/ionicons.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+
+</body>
+
+</html>

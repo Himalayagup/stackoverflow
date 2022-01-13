@@ -80,3 +80,21 @@ class AddQuestionView(View):
         context = {}
         context['alltags'] = CustomTag.objects.all()[:10]
         return render(request, "frontend/ask_questions.html", context)
+
+class AllQuestionPageView(TemplateView):
+    template_name = "frontend/all.html"
+    def get_context_data(self, *args, **kwargs):
+        context = super(AllQuestionPageView,
+                        self).get_context_data(*args, **kwargs)
+        response = requests.get(BaseURL+'/api/v1/questions/all/')
+        context['alltags'] = CustomTag.objects.all()[:10]
+        print(response.json())
+        context['results'] = response.json()
+        return context
+
+class APIPageView(TemplateView):
+    template_name = "frontend/api.html"
+    def get_context_data(self, *args, **kwargs):
+        context = super(APIPageView,self).get_context_data(*args, **kwargs)
+        context['BaseURL'] = BaseURL + '/api/v1/'
+        return context

@@ -6,7 +6,6 @@ from rest_framework import generics, status
 from questions.models import Questions, Answers
 from django.core import serializers
 from .serializers import HomePageQuestionsSerializer, QuestionSolutionCreateSerializer, QuestionCreateSerializer
-
 class SearchByTagsView(APIView):
     def get(self,request):
         q = self.request.GET.get('q').split(",")
@@ -27,6 +26,7 @@ class SearchByTagsView(APIView):
                 'associated_user' : associated_user_id,
                 'vote': item.vote,
                 'total_vote': item.total_vote_count,
+
                 })
             query1 = Q()
             for word in q:
@@ -57,7 +57,7 @@ class HomePageQuestionsListView(generics.ListAPIView):
     serializer_class = HomePageQuestionsSerializer
 
     def get_queryset(self):
-        return Questions.objects.all().order_by('-total_vote_count')[:5]
+        return Questions.objects.all().order_by('-total_vote_count')[:3]
 
 class AllQuestionsListView(generics.ListAPIView):
     serializer_class = HomePageQuestionsSerializer
@@ -186,10 +186,10 @@ class QuestionDownVoteView(APIView):
 
 class AnswerUpVoteView(APIView):
     def post(self, request, *args, **kwargs):
-        question_id = self.kwargs.get("question_id")
-        if Answers.objects.filter(id=question_id).exists():
+        solution_id = self.kwargs.get("solution_id")
+        if Answers.objects.filter(id=solution_id).exists():
             if self.request.user and self.request.user.is_authenticated:
-                ans = Questions.objects.get(id=question_id)
+                ans = Answers.objects.get(id=solution_id)
                 ans.vote = ans.vote + 1
                 ans.total_vote_count = ans.total_vote_count + 1
                 ans.save()
@@ -202,10 +202,10 @@ class AnswerUpVoteView(APIView):
 
 class AnswerDownVoteView(APIView):
     def post(self, request, *args, **kwargs):
-        question_id = self.kwargs.get("question_id")
-        if Answers.objects.filter(id=question_id).exists():
+        solution_id = self.kwargs.get("solution_id")
+        if Answers.objects.filter(id=solution_id).exists():
             if self.request.user and self.request.user.is_authenticated:
-                ans = Questions.objects.get(id=question_id)
+                ans = Answers.objects.get(id=solution_id)
                 ans.vote = ans.vote - 1
                 ans.total_vote_count = ans.total_vote_count + 1
                 ans.save()
