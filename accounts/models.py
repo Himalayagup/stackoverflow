@@ -11,7 +11,6 @@ STATUS = (
 
 class User(AbstractUser):
     name = models.CharField(max_length=255, null=True, blank=True)
-    mobile = models.CharField(max_length=10)
     email = models.EmailField(max_length=50)
     status = models.CharField("Account Status",
                               max_length=15,

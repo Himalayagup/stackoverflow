@@ -22,11 +22,13 @@ from django.urls import include, path
 
 
 urlpatterns = [
+    path("", include(("frontend.urls", 'frontend'), namespace='frontend')),
     path('admin/', admin.site.urls),
     path('taggit/', include('taggit_selectize.urls')),
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path("api/v1/questions/", include("questions.api.v1.urls")),
-    path("", include(("frontend.urls", 'frontend'), namespace='frontend')),
+    path("accounts/", include("allauth.urls")),
+    path("api/v1/accounts/", include("accounts.api.v1.urls")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
